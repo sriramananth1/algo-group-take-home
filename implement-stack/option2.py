@@ -19,45 +19,40 @@ class Node:
 
 class IntStack:
     
-    def __init__(self, head = None, len = 0):
-        self.head = None
+    def __init__(self, tail = None, len = 0):
+        self.tail = None
         self.len = 0
     
     def push(self, val : int):
         #adds val to end of linked list
         node = Node(val)
         self.len += 1
-        if not self.head:
-            self.head = node
+        if not self.tail:
+            self.tail = node
             return
-    
-        prev_node = self.head
-        while prev_node.next:
-            prev_node = prev_node.next
-        prev_node.next = node
+     
+        node.next = self.tail #points node to tail
+        self.tail = node  #sets tail to nod
+
     
     def peek(self):
         #returns final element 
        
-        if not self.head:
-            return 
-        node = self.head
-        while node.next:
-            node = node.next
-        return node.val
+        if not self.tail:
+            return
+        return self.tail.val
+
     
     def pop(self):
         #removes final element from linked list
         
-        if not self.head:
-            return 
-        node = self.head
-        while node.next:
-            prev, curr = node, node.next
-            if not curr.next:
-                prev.next = None
-                self.len -= 1
-            node = curr
+        if not self.tail:
+            return
+        fin = self.tail.val 
+        self.len -= 1
+        prev = self.tail.next
+        self.tail = prev
+        return fin
 
     def size(self):
         return self.len
@@ -204,6 +199,7 @@ print('''Test 3. Expected Outputs:
 2 2
 1 1
 1 1
+0 None
 -----------------------------------------
 Actual Outputs: ''')
 
