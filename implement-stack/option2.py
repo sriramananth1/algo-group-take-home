@@ -39,7 +39,7 @@ class IntStack:
         #returns final element 
        
         if not self.tail:
-            return
+            raise Exception("Stack is emtpy")
         return self.tail.val
 
     
@@ -47,7 +47,7 @@ class IntStack:
         #removes final element from linked list
         
         if not self.tail:
-            return
+            raise Exception("Stack is empty")
         fin = self.tail.val 
         self.len -= 1
         prev = self.tail.next
